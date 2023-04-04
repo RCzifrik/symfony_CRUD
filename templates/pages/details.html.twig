@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link href="../css/styles.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    <div class="container-lg my-5">
+        <table>
+            <tr>
+                <th class="text-center p-2 border border-dark">Nummer</th>
+                <th class="text-center p-2 border border-dark">Model</th>
+                <th class="text-center p-2 border border-dark">Type</th>
+                <th class="text-center p-2 border border-dark">Kleur</th>
+                <th class="text-center p-2 border border-dark">Massa</th>
+                <th class="text-center p-2 border border-dark">Prijs</th>
+                <th class="text-center p-2 border border-dark">Voorraad</th>
+            </tr>
+            {% for car in cars %}
+                <tr>
+                    <td class="text-center p-2 border border-dark">{{ car.id }}</td>
+                    <td class="text-center p-2 border border-dark">{{ car.model }}</td>
+                    <td class="text-center p-2 border border-dark">{{ car.type }}</td>
+                    <td class="text-center p-2 border border-dark">{{ car.kleur }}</td>
+                    <td class="text-center p-2 border border-dark">{{ car.massa }}</td>
+                    <td class="text-center p-2 border border-dark">{{ car.prijs }}</td>
+                    <td class="text-center p-2 border border-dark">{{ car.voorraad }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link href="../css/styles.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    <div class="container-lg my-5">
+        <table class="mx-auto">
+            <tr>
+                <th class="text-center p-2 border border-dark">Nummer</th>
+                <th class="text-center p-2 border border-dark">Model</th>
+                <th class="text-center p-2 border border-dark">Type</th>
+                <th class="text-center p-2 border border-dark">Prijs (euro)</th>
+            </tr>
+            {% for car in cars %}
+                <tr>
+                    <td class="text-center p-2 border border-dark">{{ car.id }}</td>
+                    <td class="text-center p-2 border border-dark">{{ car.model }}</td>
+                    <td class="text-center p-2 border border-dark">{{ car.type }}</td>
+                    <td class="p-2 border border-dark">€{{ (car.prijs)|number_format(2, ',', '.') }}</td>
+                    <td class="text-center py-2 px-3"><a href="{{ path('car_details', {id: car.id}) }}" class="btn btn-outline-info">details</a></td>
+                    <td class="text-center py-2 px-3"><a href="#" class="btn btn-outline-warning">update</a></td>
+                    <td class="text-center py-2 px-3"><a href="#" class="btn btn-outline-danger">delete</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <a href="#" class="btn btn-warning mx-auto">insert</a>
+    </div>
+{% endblock %}
