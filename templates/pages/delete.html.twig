@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link href="../css/styles.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block body %}
+    <div class="container-lg my-4 text-center">
+        <h1 class="mb-5">Delete de auto</h1>
+        {{ form(form, {'attr': {'onclick': 'return confirm("Are you doubly sure?")'}}) }}
+        <a href="{{ path('app_home') }}" class="btn btn-info my-4">Home</a>
+    </div>
+{% endblock %}

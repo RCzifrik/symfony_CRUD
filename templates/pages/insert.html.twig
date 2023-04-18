@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container-lg my-4">
+        {{ form(form) }}
+        <a href="{{ path('app_home') }}" class="btn btn-info my-4">Home</a>
+    </div>
+{% endblock %}
