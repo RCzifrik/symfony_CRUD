@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AutosRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AutosRepository::class)]
 class Autos
@@ -15,21 +16,28 @@ class Autos
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $model = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $type = null;
 
     #[ORM\Column(length: 255)]
     private ?string $kleur = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?int $massa = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
+    #[Assert\GreaterThanOrEqual(
+        value: 10000,
+    )]
     private ?string $prijs = null;
 
     #[ORM\Column]
+    #[Assert\Positive]
     private ?int $voorraad = null;
 
     public function getId(): ?int

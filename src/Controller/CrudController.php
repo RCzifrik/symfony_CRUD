@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CrudController extends AbstractController
 {
@@ -27,10 +28,13 @@ class CrudController extends AbstractController
     }
 
     #[Route('/insert', name: 'car_insert')]
-    public function insert(ManagerRegistry $doctrine,Request $request): Response
+    public function insert(ManagerRegistry $doctrine,Request $request, ValidatorInterface $validator): Response
     {
         $entityManager = $doctrine->getManager();
         $car = new Autos();
+
+        $errors = $validator->validate($car);
+
         $form = $this->createForm(InsertType::class, $car);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -72,17 +76,11 @@ class CrudController extends AbstractController
         $form = $this->createForm(UpdateType::class, $car);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($car->getVoorraad()>= 1 && $car->getPrijs() >= 10000) {
-                $entitymanager->flush();
-                $this->addFlash('success', 'Update successvol!');
-                return $this->redirectToRoute('car_details', [
-                    'id' => $car->getId()
-                ]);
-            } elseif ($car->getPrijs() < 10000) {
-                $this->addFlash('warning', 'Prijs moet 10.000 euro of hoger zijn');
-            } elseif ($car->getVoorraad() < 1) {
-                $this->addFlash('warning', 'Voorraad moet 1 of meer zijn');
-            }
+            $entitymanager->flush();
+            $this->addFlash('success', 'Update successvol!');
+            return $this->redirectToRoute('car_details', [
+                'id' => $car->getId()
+            ]);
         }
         return $this->renderForm('pages/update.html.twig', [
             'form' => $form,
