@@ -4,28 +4,48 @@
 {% endblock %}
 {% block body %}
     <div class="container-lg my-5">
-        <table>
-            <tr>
-                <th class="text-center p-2 border border-dark">Nummer</th>
-                <th class="text-center p-2 border border-dark">Model</th>
-                <th class="text-center p-2 border border-dark">Type</th>
-                <th class="text-center p-2 border border-dark">Kleur</th>
-                <th class="text-center p-2 border border-dark">Massa</th>
-                <th class="text-center p-2 border border-dark">Prijs</th>
-                <th class="text-center p-2 border border-dark">Voorraad</th>
-            </tr>
-            {% for car in cars %}
-                <tr>
-                    <td class="text-center p-2 border border-dark">{{ car.id }}</td>
-                    <td class="text-center p-2 border border-dark">{{ car.model }}</td>
-                    <td class="text-center p-2 border border-dark">{{ car.type }}</td>
-                    <td class="text-center p-2 border border-dark">{{ car.kleur }}</td>
-                    <td class="text-center p-2 border border-dark">{{ car.massa }}</td>
-                    <td class="text-center p-2 border border-dark">{{ car.prijs }}</td>
-                    <td class="text-center p-2 border border-dark">{{ car.voorraad }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        <div class="row">
+            <div class="col-6 px-3">
+                <table>
+                    <tr>
+                        <th class="text-center p-2 border border-dark">Nummer</th>
+                        <th class="text-center p-2 border border-dark">Model</th>
+                        <th class="text-center p-2 border border-dark">Type</th>
+                        <th class="text-center p-2 border border-dark">Kleur</th>
+                        <th class="text-center p-2 border border-dark">Massa</th>
+                        <th class="text-center p-2 border border-dark">Prijs</th>
+                        <th class="text-center p-2 border border-dark">Voorraad</th>
+                        <th class="text-center p-2 border border-dark">Belasting (euro)</th>
+                    </tr>
+                    {% for car in cars %}
+                        <tr>
+                            <td class="text-center p-2 border border-dark">{{ car.id }}</td>
+                            <td class="text-center p-2 border border-dark">{{ car.model }}</td>
+                            <td class="text-center p-2 border border-dark">{{ car.type }}</td>
+                            <td class="text-center p-2 border border-dark">{{ car.kleur }}</td>
+                            <td class="text-center p-2 border border-dark">{{ car.massa }}</td>
+                            <td class="text-center p-2 border border-dark">€{{ car.prijs|number_format(2, ',', '.') }}</td>
+                            <td class="text-center p-2 border border-dark">{{ car.voorraad }}</td>
+                            <td class="text-center p-2 border border-dark">€
+                                {% if  car.massa >= 1500  %}
+                                    60
+                                {% elseif  car.massa >= 1000  %}
+                                    40
+                                {% elseif  car.massa >= 750  %}
+                                    22
+                                {% elseif  car.massa >= 500  %}
+                                    16
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col-6 px-3">
+
+            </div>
+        </div>
+
         <a href="{{ path('app_home') }}" class="btn btn-info my-4">Home</a>
     </div>
 {% endblock %}

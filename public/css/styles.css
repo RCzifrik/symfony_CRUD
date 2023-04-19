@@ -3,3 +3,12 @@ header {
     background-size: 100%;
     object-fit: cover;
 }
+
+.nav-item {
+    transition: 175ms;
+    border: 3px solid white;
+}
+
+.nav-item:hover {
+    border: 3px solid black;
+}
