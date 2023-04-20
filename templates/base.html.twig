@@ -18,29 +18,29 @@
         <header class="container-fluid" style="height: 35vh">
             <h1 class="text-center text-danger py-5"><b class="p-3 border border-3 bg-light bg-opacity-50 border-danger rounded">THE SCRAPYARD</b></h1>
         </header>
-        <nav class="navbar navbar-expand-lg bg-body sticky-top">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item rounded px-2 mx-1">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
-                        </li>
-                        <li class="nav-item rounded px-2 mx-1">
-                            <a class="nav-link active" href="#">Features</a>
-                        </li>
-                        <li class="nav-item rounded px-2 mx-1">
-                            <a class="nav-link active" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item rounded px-2 mx-1">
-                            <a class="nav-link active" href="#">test</a>
-                        </li>
-                    </ul>
+            <nav class="navbar navbar-expand-lg bg-body sticky-top">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item rounded px-2 mx-1">
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            </li>
+                            <li class="nav-item rounded px-2 mx-1">
+                                <a class="nav-link active" href="{{ path('car_all_details') }}">Details</a>
+                            </li>
+                            <li class="nav-item rounded px-2 mx-1">
+                                <a class="nav-link active" href="{{ path('app_login') }}">login</a>
+                            </li>
+                            <li class="nav-item rounded px-2 mx-1">
+                                <a class="nav-link active" href="{{ path('app_register') }}">registreren</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success w-100">
                 <h2 class="text-center text-dark">{{ message }}</h2>

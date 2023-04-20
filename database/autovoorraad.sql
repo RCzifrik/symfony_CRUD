@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 20 apr 2023 om 11:12
+-- Gegenereerd op: 20 apr 2023 om 12:58
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -97,6 +97,14 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Gegevens worden geëxporteerd voor tabel `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
+(1, 'klaas@rocmondriaan.nl', '[\"ROLE_KLANT\"]', '$2y$13$Ogiu.1ghqMboV5xergmt8OgmBM8kRWKG99Y5nciGvvz9/5KryIiEy'),
+(2, 'admin@rocmondriaan.nl', '[\"ROLE_ADMIN\"]', '$2y$13$RLAiOmySv3Adysd/lZh3tutS2T41RtTqnZl1qZd6HhFOxSVw64/oO');
+
+--
 -- Indexen voor geëxporteerde tabellen
 --
 
@@ -148,7 +156,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

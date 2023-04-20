@@ -13,11 +13,12 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(ManagerRegistry $doctrine): Response
     {
-
+        $number = 0;
         $cars = $doctrine->getRepository(Autos::class)->findAll();
 
         return $this->render('pages/home.html.twig', [
             'cars' => $cars,
+            'number' => $number
         ]);
     }
 }

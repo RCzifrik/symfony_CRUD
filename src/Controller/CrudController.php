@@ -27,6 +27,15 @@ class CrudController extends AbstractController
         ]);
     }
 
+    #[Route('/details', name: 'car_all_details')]
+    public function allDetails(ManagerRegistry $doctrine): Response
+    {
+        $carDetails = $doctrine->getRepository(Autos::class)->findAll();
+        return $this->render('pages/details.html.twig', [
+            'cars' => $carDetails,
+        ]);
+    }
+
     #[Route('/insert', name: 'car_insert')]
     public function insert(ManagerRegistry $doctrine,Request $request, ValidatorInterface $validator): Response
     {
