@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 18 apr 2023 om 12:54
+-- Gegenereerd op: 20 apr 2023 om 11:12
 -- Serverversie: 10.4.24-MariaDB
 -- PHP-versie: 8.1.6
 
@@ -42,12 +42,11 @@ CREATE TABLE `autos` (
 --
 
 INSERT INTO `autos` (`id`, `model`, `type`, `kleur`, `massa`, `prijs`, `voorraad`) VALUES
-(1, 'Volkswagen', 'Up', 'Blauw', 945, '18139.99', 3),
-(2, 'Porsche', '911', 'Wit', 1075, '123395.99', 2),
-(3, 'Volkswagen', 'Tiguan', 'Zilver', 1510, '36634.99', 4),
-(4, 'Mini', 'Cooper S', 'Geel', 1185, '56999.99', 5),
-(6, 'BMW', 'M3 GTR', 'Zilver', 1385, '218000.00', 1),
-(8, 'test', 'test', 'Zwart', 3434, '2154325.00', 35);
+(1, 'BMW', 'M3 GTR', 'Zilver', 1385, '218000.00', 5),
+(2, 'Volkswagen', 'Up', 'Blauw', 945, '18139.99', 3),
+(3, 'Porsche', '911', 'Wit', 1075, '12395.99', 2),
+(4, 'Volkswagen', 'Tiguan', 'Zilver', 1510, '36634.99', 4),
+(5, 'Mini', 'Cooper S', 'Geel', 1185, '56999.99', 5);
 
 -- --------------------------------------------------------
 
@@ -66,7 +65,7 @@ CREATE TABLE `doctrine_migration_versions` (
 --
 
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
-('DoctrineMigrations\\Version20230404093423', '2023-04-18 11:16:30', 80);
+('DoctrineMigrations\\Version20230419090850', '2023-04-20 11:05:23', 135);
 
 -- --------------------------------------------------------
 
@@ -82,6 +81,19 @@ CREATE TABLE `messenger_messages` (
   `created_at` datetime NOT NULL,
   `available_at` datetime NOT NULL,
   `delivered_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `roles` longtext COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:json)',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -110,6 +122,13 @@ ALTER TABLE `messenger_messages`
   ADD KEY `IDX_75EA56E016BA31DB` (`delivered_at`);
 
 --
+-- Indexen voor tabel `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`);
+
+--
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
@@ -117,13 +136,19 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT voor een tabel `autos`
 --
 ALTER TABLE `autos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT voor een tabel `messenger_messages`
 --
 ALTER TABLE `messenger_messages`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT voor een tabel `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
