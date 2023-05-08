@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="container-lg"><h4 style="color: red">Error: {{ error.messageKey|trans(error.messageData, 'security') }}</h4></div>
     {% endif %}
     <div class="container-lg my-5">
-        <form action="{{ path('app_login') }}" method="post">
-            <label for="username">Email: </label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}">
+        <form action="{{ path('login') }}" method="post">
+            <label for="username" class="form-label">Email: </label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control my-2">
             <label for="password">Password: </label>
-            <input type="text" id="password" name="_password">
-            <input type="hidden", name="_target_path" value="/">
-            <button type="submit">login</button>
+            <input type="password" id="password" name="_password" class="form-control my-2">
+            <input type="hidden" name="_target_path" value="/redirect">
+            <button type="submit" class="btn btn-primary my-2">login</button>
         </form>
     </div>
 {% endblock %}

@@ -29,7 +29,7 @@ class InsertType extends AbstractType
                     'Geel' => "Geel",
                 ]
             ])
-            ->add('massa')
+            ->add('massa', IntegerType::class)
             ->add('prijs', MoneyType::class)
             ->add('voorraad', IntegerType::class)
             ->add('toevoegen', SubmitType::class)

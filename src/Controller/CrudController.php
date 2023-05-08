@@ -37,12 +37,10 @@ class CrudController extends AbstractController
     }
 
     #[Route('/insert', name: 'car_insert')]
-    public function insert(ManagerRegistry $doctrine,Request $request, ValidatorInterface $validator): Response
+    public function insert(ManagerRegistry $doctrine, Request $request): Response
     {
         $entityManager = $doctrine->getManager();
         $car = new Autos();
-
-        $errors = $validator->validate($car);
 
         $form = $this->createForm(InsertType::class, $car);
         $form->handleRequest($request);
@@ -54,12 +52,12 @@ class CrudController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->renderForm('pages/insert.html.twig', [
+        return $this->renderForm('admin/insert.html.twig', [
             'form' => $form
         ]);
     }
     #[Route('/delete/{id}', name: 'car_delete')]
-    public function delete(ManagerRegistry $doctrine,Request $request , int $id): Response
+    public function delete(ManagerRegistry $doctrine, Request $request, int $id): Response
     {
         $entitymanager = $doctrine->getManager();
         $car = $doctrine->getRepository(Autos::class)->find($id);
@@ -72,7 +70,7 @@ class CrudController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->renderForm('pages/delete.html.twig', [
+        return $this->renderForm('admin/delete.html.twig', [
             'form' => $form
         ]);
     }
@@ -91,7 +89,7 @@ class CrudController extends AbstractController
                 'id' => $car->getId()
             ]);
         }
-        return $this->renderForm('pages/update.html.twig', [
+        return $this->renderForm('admin/update.html.twig', [
             'form' => $form,
             'notification' => $notification
         ]);
