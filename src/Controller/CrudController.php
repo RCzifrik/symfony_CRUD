@@ -36,7 +36,7 @@ class CrudController extends AbstractController
         ]);
     }
 
-    #[Route('/insert', name: 'car_insert')]
+    #[Route('/admin/insert', name: 'car_insert')]
     public function insert(ManagerRegistry $doctrine, Request $request): Response
     {
         $entityManager = $doctrine->getManager();
@@ -56,7 +56,7 @@ class CrudController extends AbstractController
             'form' => $form
         ]);
     }
-    #[Route('/delete/{id}', name: 'car_delete')]
+    #[Route('/admin/delete/{id}', name: 'car_delete')]
     public function delete(ManagerRegistry $doctrine, Request $request, int $id): Response
     {
         $entitymanager = $doctrine->getManager();
@@ -74,7 +74,7 @@ class CrudController extends AbstractController
             'form' => $form
         ]);
     }
-    #[Route('/update/{id}', name: 'car_update')]
+    #[Route('/admin/update/{id}', name: 'car_update')]
     public function update(ManagerRegistry $doctrine, Request $request, int $id): Response
     {
         $notification = "";

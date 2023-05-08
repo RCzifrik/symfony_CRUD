@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Autos;
+use App\Entity\User;
+use App\Form\RegisterType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,10 +40,21 @@ class UserController extends AbstractController
     #[Route('/register', name: 'register')]
     public function register(ManagerRegistry $doctrine, Request $request): Response
     {
+        $entitymanager = $doctrine->getManager();
+        $user = new User();
 
+        $form = $this->createForm(RegisterType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $entitymanager->persist($user);
+            $entitymanager->flush();
+            return $this->redirectToRoute('user_home');
+        }
 
-
-        return $this->render('user/register.html.twig');
+        return $this->renderForm('user/register.html.twig', [
+            'form' => $form,
+        ]);
     }
 
     #[Route('/login', name: 'login')]
